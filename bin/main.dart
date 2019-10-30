@@ -12,6 +12,16 @@
 // soldiers n and the interval at which they are killed i, and returns the
 // position of the fortunate survivor.
 
+int josephus(int n) {
+  int res = 0;
+  for (int i = 1; i <= n; i++) {
+    res = (res + 3) % i;
+
+  }
+  return res + 1;
+}
+
+
 
 // Challenge 3
 // Movie Theater Seating
@@ -20,6 +30,18 @@
 // layout can be represented as a 2-D matrix, where 0s represent empty seats and
 // 1s represent taken seats.
 
+int groupSeats(List movieSeats, int n){
+  int count = 0;
+  for(int i = 0; i < movieSeats.length; i++){
+    for(int j = 0; j < movieSeats[i].length-n+1; j++){
+      print(((movieSeats[i].sublist(j, j+n)).toSet().toList()));
+      if ((((movieSeats[i].sublist(j, j+n)).toSet().toList())[0]) == 0 && (movieSeats[i].sublist(j, j+n)).toSet().length == 1){
+        count++;
+      }
+    }
+  }
+  return count;
+}
 
 // Create a function that, given a seat layout and the number of friends n,
 // returns the number of available spots for all n friends to sit together.
@@ -35,4 +57,14 @@
 //    ], 2) ➞ 3
 
 main() {
+  print(josephus(10));
+  //print(josephus(41));
+  print(groupSeats([
+ [1, 0, 1, 0, 1, 0, 1],
+ [0, 1, 0, 1, 0, 1, 0],
+ [0, 0, 1, 1, 1, 1, 1],
+  [1, 0, 1, 1, 0, 0, 1],
+  [1, 1, 1, 0, 1, 0, 1],
+ [0, 1, 1, 1, 1, 0, 0]
+   ], 2));
 }
